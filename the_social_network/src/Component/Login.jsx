@@ -52,7 +52,7 @@ const New = styled.button`
 export default class Login extends React.Component {
   render() {
     return (
-      <>
+    
         <Container>
           <Head>
             <h1 style={{ color: "rgb(24, 119, 242)" }}>The Social Network</h1>
@@ -89,7 +89,7 @@ export default class Login extends React.Component {
             </div>
           </Head>
         </Container>
-      </>
+      
     );
   }
 }

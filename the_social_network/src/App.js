@@ -21,6 +21,8 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      fname:"",
+      lname:"",
       email: "",
       password: "",
       signUp: false,
@@ -46,7 +48,7 @@ export default class App extends React.Component {
         array[i].email === this.state.email &&
         array[i].password === this.state.password
       ) {
-        localStorage.setItem("current", this.state.email);
+        localStorage.setItem("current", array[i].fullname);
         break;
       }
     }
@@ -63,6 +65,7 @@ export default class App extends React.Component {
     }
     user.email = this.state.email;
     user.password = this.state.password;
+    user.fullname=this.state.fname+" "+this.state.lname;
     array.push(user);
     localStorage.setItem("allUsers", JSON.stringify(array));
   };

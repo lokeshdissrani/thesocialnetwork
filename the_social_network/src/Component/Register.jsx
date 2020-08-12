@@ -53,7 +53,7 @@ const Cancel = styled.button`
 export default class Register extends React.Component {
   render() {
     return (
-      <>
+      
         <Content>
           <Cancel onClick={this.props.cancel}>X</Cancel>
           <h3>Sign Up</h3>
@@ -62,7 +62,7 @@ export default class Register extends React.Component {
             <div>
               <div>
                 <Input
-                  name="fName"
+                  name="fname"
                   type="text"
                   placeholder="First name"
                   value={this.props.state.fname}
@@ -98,11 +98,11 @@ export default class Register extends React.Component {
               />
             </div>
             <div>
-              <Success name="register">Register</Success>
+              <Success name="register" onClick={this.props.cancel}>Register</Success>
             </div>
           </form>
         </Content>
-      </>
+      
     );
   }
 }
