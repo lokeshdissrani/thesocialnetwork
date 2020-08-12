@@ -16,13 +16,14 @@ const Card = styled.div`
 `
 const Logout = styled.div`
     width:100%;
-    height:80px;
+    height:50px;
     & > button{
         float:right;
         padding:20px;
         width:150px;
         background:white;
         outline:none;
+        border-radius:10px;
         &:hover{
             background:red;
             color:white;
@@ -70,6 +71,11 @@ const Post = styled.button`
 const Big = styled.span`
     font-size:20px;
 `
+
+const UserName = styled.span`
+    font-size:50px;
+    margin:10px;
+`
 const Big1 = styled.span`
     font-size:20px;
     color:orange;
@@ -91,8 +97,13 @@ const Newbutton = styled.button`
 
 const Temp = styled.div`
     float:left;
+    margin-right:35px;
 `
-
+const Logo = styled.span`
+    font-size:50px;
+    color:rgb(24, 119, 242);
+    margin:10px;
+`
 export default class Dashboard extends React.Component{
     constructor(props){
         super(props)
@@ -195,11 +206,14 @@ export default class Dashboard extends React.Component{
         console.log(this.state.src);
         return(
             <div>
-                <Logout><button onClick={this.props.logout}>Logout</button></Logout>
+                <div>
+                    <Logo><b>The Social Network</b></Logo>
+                    <Logout><button onClick={this.props.logout}>Logout</button></Logout>
+                </div>
                 <F>
                     <form onSubmit={this.statusposting}>
                             <Temp>
-                            <Big><b>{current}</b></Big>
+                            <UserName><b>{current}</b></UserName>
                             </Temp>
                             <Temp>
                             <textarea rows="4" cols="50" onChange={this.posting} name="post" placeholder="Whats on your mind?"></textarea><br></br>
