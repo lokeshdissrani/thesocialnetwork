@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Card = styled.div`
     padding:10px;
     margin: 0 auto;
-    height:415px;
+    height:430px;
     margin-top: 20px;
     border:1px solid red;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -90,9 +90,35 @@ const Text = styled.span`
     font-size:25px;
 `
 const Newbutton = styled.button`
+background: green;
+color: white;
+font-size: 17px;
+padding: 10px;
+margin: 10px;
+width: 200px;
+border: none;
+border-radius: 8px;
+outline: none;
+&:hover {
+    background: greenyellow;
+    color: black;
+    cursor: pointer;
+}
+
+`
+const Button = styled.button`
     padding:10px;
     background:white;
-    color:blue;
+    border-radius:10px;
+    width:200px;
+    &:hover{
+        background:olive;
+        color:black;
+    }
+`
+const LikeCom = styled.span`
+    font-size:30px;
+    margin-left:35px;
 `
 
 const Temp = styled.div`
@@ -236,10 +262,10 @@ export default class Dashboard extends React.Component{
                             
                             {current in item.liked && <Newbutton onClick={()=>this.disliking(index)}>Dislike</Newbutton>}
                             {!(current in item.liked) && <Newbutton onClick={()=>this.liking(index)}>Like</Newbutton>}
-                            <Big>{Object.keys(item.liked).length} Likes {item.comments.length} Comments</Big>
+                            <LikeCom>{Object.keys(item.liked).length} Likes</LikeCom> <LikeCom>{item.comments.length} Comments</LikeCom>
                         </Left>
                         <Right>
-                            <button onClick={()=>this.likeflag(index)} >Wholiked</button>
+                            <Button onClick={()=>this.likeflag(index)} >Wholiked</Button>
                             {item.likeflag &&  <ul>{Object.keys(item.liked).map((item)=>(
                                 <li>{item}</li>
                             ))}</ul>}
@@ -251,7 +277,7 @@ export default class Dashboard extends React.Component{
                             ))}
                             <Big1><b>{current}</b></Big1>
                             <textarea rows="4" cols="30" onChange={this.posting} name="comment"></textarea>
-                            <button onClick={()=>this.postcommenting(index)}>Post Comment</button>
+                            <Button onClick={()=>this.postcommenting(index)}>Post Comment</Button>
                             </div>
                         </Right>
                     </div>
