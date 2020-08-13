@@ -72,7 +72,13 @@ const Bottom =styled.div`
 const Bottom1 =styled.div`
     position:absolute;
     bottom:5px;
-    right:110px;  
+    right:110px; 
+    & > textarea{
+        border-radius:10px;
+    } 
+    & > textarea:focus{
+        border:none
+    }
     
 `
 
@@ -163,6 +169,9 @@ margin-right:35px;
 & > textarea{
     font-size:18px;
     border-radius:10px;
+}
+& > textarea:focus{
+    border:none
 }
 `
 const Logo = styled.span`
@@ -302,13 +311,13 @@ export default class Dashboard extends React.Component{
                             
                             {current in item.liked && <Newbutton onClick={()=>this.disliking(index)}><FontAwesomeIcon icon={faThumbsDown} /></Newbutton>}
                             {!(current in item.liked) && <Newbutton onClick={()=>this.liking(index)}><FontAwesomeIcon icon={faThumbsUp} /></Newbutton>}
-                            <LikeCom>{Object.keys(item.liked).length} <FontAwesomeIcon icon={faThumbsUp} /> Likes</LikeCom> <LikeCom> {item.comments.length} <FontAwesomeIcon icon={faComments} /> Comments</LikeCom>
+                            <LikeCom onClick={()=>this.likeflag(index)} >{Object.keys(item.liked).length} <FontAwesomeIcon icon={faThumbsUp} /> Likes</LikeCom> <LikeCom> {item.comments.length} <FontAwesomeIcon icon={faComments} /> Comments</LikeCom>
                         </Left>
                         <Right>
-                            <Button onClick={()=>this.likeflag(index)} ><FontAwesomeIcon icon={faThumbsUp} style={{fontSize:"24px"}} /></Button>
-                            {item.likeflag &&  <ul>{Object.keys(item.liked).map((item)=>(
+                            
+                            {item.likeflag &&  <div>People who Liked:<ul>{Object.keys(item.liked).map((item)=>(
                                 <li>{item}</li>
-                            ))}</ul>}
+                            ))}</ul></div>}
                             <div>
                                     {item.comments.length>0 && item.comments.map((item)=>(
                                         <div>
