@@ -1,31 +1,35 @@
 import React from 'react';
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp,faThumbsDown, faComments} from '@fortawesome/free-solid-svg-icons'
+import { faThumbsUp,faThumbsDown, faComments, faArrowAltCircleRight, faPaperPlane} from '@fortawesome/free-solid-svg-icons'
 
 const Card = styled.div`
-    padding:10px;
-    margin: 0 auto;
-    height:430px;
-    margin-top: 20px;
-    border:1px solid red;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    width: 70%;
-    &:hover{
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    }
+padding:10px;
+margin: 0 auto; 
+height:430px; 
+margin-top: 20px;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+transition: 0.3s;
+width: 70%;
+border-radius:10px;
+&:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+position:relative;
 `
 const Logout = styled.div`
-    width:100%;
+width:100%;
     height:50px;
     & > button{
         float:right;
-        padding:20px;
-        width:150px;
+        padding:15px;
+        margin-right:20px;
+        margin-top:10px;
+        width:130px;
         background:white;
         outline:none;
-        border-radius:10px;
+        font-size:15px;
+        border-radius:15px;
         &:hover{
             background:red;
             color:white;
@@ -34,11 +38,14 @@ const Logout = styled.div`
 `
 
 const F = styled.div`
-    margin: 0 auto;
+margin: 0 auto;
     width:70%;
     height:100px;
     padding:10px;
     border: 1px solid black;
+    border-radius:20px;
+
+
     
 `
 const Left =styled.div`
@@ -53,6 +60,19 @@ const Right = styled.div`
     height:300px;
     padding:5px;
     float:left;
+    
+    
+`
+const Bottom =styled.div`
+    position:absolute;
+    bottom:15px;
+    right:5px;    
+`
+
+const Bottom1 =styled.div`
+    position:absolute;
+    bottom:5px;
+    right:110px;  
     
 `
 
@@ -92,7 +112,7 @@ const Text = styled.span`
     font-size:25px;
 `
 const Newbutton = styled.button`
-background: green;
+background: blue;
 color: white;
 font-size: 17px;
 padding: 10px;
@@ -102,30 +122,48 @@ border: none;
 border-radius: 8px;
 outline: none;
 &:hover {
-    background: greenyellow;
-    color: black;
+    font-size:16px;
     cursor: pointer;
 }
 
 `
 const Button = styled.button`
-    padding:10px;
-    background:white;
-    border-radius:10px;
-    width:200px;
-    &:hover{
-        background:olive;
-        color:black;
-    }
+border:none;
+padding:10px;
+background:blue;
+color:white;
+border-radius:10px;
+width:200px;
+
+&:focus{
+    outline:none;
+}
 `
+const Button1 = styled.button`
+border:none;
+padding:10px;
+background:darkgreen;
+color:white;
+border-radius:10px;
+width:100px;
+
+&:focus{
+    outline:none;
+}
+`
+
 const LikeCom = styled.span`
     font-size:30px;
     margin-left:35px;
 `
 
 const Temp = styled.div`
-    float:left;
-    margin-right:35px;
+float:left;
+margin-right:35px;
+& > textarea{
+    font-size:18px;
+    border-radius:10px;
+}
 `
 const Logo = styled.span`
     font-size:50px;
@@ -244,7 +282,7 @@ export default class Dashboard extends React.Component{
                             <UserName><b>{current}</b></UserName>
                             </Temp>
                             <Temp>
-                            <textarea rows="4" cols="50" onChange={this.posting} name="post" placeholder="Whats on your mind?"></textarea><br></br>
+                            <textarea rows="3" cols="40" onChange={this.posting} name="post" placeholder="Whats on your mind?"></textarea><br></br>
                             <input onChange={this.posting} name="src" placeholder="Enter Image src here"></input>
                             </Temp>
                             <Temp>
@@ -267,19 +305,23 @@ export default class Dashboard extends React.Component{
                             <LikeCom>{Object.keys(item.liked).length} <FontAwesomeIcon icon={faThumbsUp} /> Likes</LikeCom> <LikeCom> {item.comments.length} <FontAwesomeIcon icon={faComments} /> Comments</LikeCom>
                         </Left>
                         <Right>
-                            <Button onClick={()=>this.likeflag(index)} >Wholiked</Button>
+                            <Button onClick={()=>this.likeflag(index)} ><FontAwesomeIcon icon={faThumbsUp} style={{fontSize:"24px"}} /></Button>
                             {item.likeflag &&  <ul>{Object.keys(item.liked).map((item)=>(
                                 <li>{item}</li>
                             ))}</ul>}
                             <div>
                                     {item.comments.length>0 && item.comments.map((item)=>(
                                         <div>
-                                            <div style={{border:"1px solid black"}}><Big style={{color:"darkgoldenrod"}}><b>{item.creator}</b></Big> {item.text}</div>
+                                            <div style={{padding:"5px",margin:"0 auto",borderBottom:"1px solid black"}}><Big style={{color:"darkgoldenrod"}}><b>{item.creator}</b></Big> {item.text}</div>
                                         </div>		
                             ))}
-                            <Big1><b>{current}</b></Big1>
-                            <textarea rows="1" cols="55" onChange={this.posting} name="comment"></textarea>
-                            <Button onClick={()=>this.postcommenting(index)}>Post Comment</Button>
+                            
+                            <Bottom1>
+                            <textarea rows="3" cols="40" onChange={this.posting} name="comment" placeholder="Add your comment here"></textarea>
+                            </Bottom1>
+                            <Bottom>
+                            <Button1 onClick={()=>this.postcommenting(index)}><FontAwesomeIcon style={{fontSize:"24px"}} icon={faPaperPlane} /></Button1>
+                            </Bottom>
                             </div>
                         </Right>
                     </div>
