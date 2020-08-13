@@ -98,7 +98,7 @@ export default class Register extends React.Component {
               />
             </div>
             <div>
-              <Success name="register" onClick={this.props.cancel}>Register</Success>
+              <Success name="register">Register</Success>
             </div>
           </form>
         </Content>

@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp,faThumbsDown, faComments} from '@fortawesome/free-solid-svg-icons'
 
 const Card = styled.div`
     padding:10px;
@@ -260,9 +262,9 @@ export default class Dashboard extends React.Component{
                             <img src={item.src} width="90%" height="90%" alt="logo" />
                             <br></br>
                             
-                            {current in item.liked && <Newbutton onClick={()=>this.disliking(index)}>Dislike</Newbutton>}
-                            {!(current in item.liked) && <Newbutton onClick={()=>this.liking(index)}>Like</Newbutton>}
-                            <LikeCom>{Object.keys(item.liked).length} Likes</LikeCom> <LikeCom>{item.comments.length} Comments</LikeCom>
+                            {current in item.liked && <Newbutton onClick={()=>this.disliking(index)}><FontAwesomeIcon icon={faThumbsDown} /></Newbutton>}
+                            {!(current in item.liked) && <Newbutton onClick={()=>this.liking(index)}><FontAwesomeIcon icon={faThumbsUp} /></Newbutton>}
+                            <LikeCom>{Object.keys(item.liked).length} <FontAwesomeIcon icon={faThumbsUp} /> Likes</LikeCom> <LikeCom> {item.comments.length} <FontAwesomeIcon icon={faComments} /> Comments</LikeCom>
                         </Left>
                         <Right>
                             <Button onClick={()=>this.likeflag(index)} >Wholiked</Button>
@@ -272,11 +274,11 @@ export default class Dashboard extends React.Component{
                             <div>
                                     {item.comments.length>0 && item.comments.map((item)=>(
                                         <div>
-                                            <div><Big><b>{item.creator}</b></Big> {item.text}</div>
+                                            <div style={{border:"1px solid black"}}><Big style={{color:"darkgoldenrod"}}><b>{item.creator}</b></Big> {item.text}</div>
                                         </div>		
                             ))}
                             <Big1><b>{current}</b></Big1>
-                            <textarea rows="4" cols="30" onChange={this.posting} name="comment"></textarea>
+                            <textarea rows="1" cols="55" onChange={this.posting} name="comment"></textarea>
                             <Button onClick={()=>this.postcommenting(index)}>Post Comment</Button>
                             </div>
                         </Right>

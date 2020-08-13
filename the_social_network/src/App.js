@@ -58,16 +58,19 @@ export default class App extends React.Component {
     e.preventDefault();
     let user = {};
     var x = localStorage.getItem("allUsers");
+    
     if (x == null) {
       var array = [];
     } else {
       var array = JSON.parse(x);
     }
+    console.log(array)
     user.email = this.state.email;
     user.password = this.state.password;
     user.fullname=this.state.fname+" "+this.state.lname;
     array.push(user);
     localStorage.setItem("allUsers", JSON.stringify(array));
+    this.handlesignUp();
   };
   
   handleLogout = () =>{
